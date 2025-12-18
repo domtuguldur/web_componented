@@ -68,17 +68,15 @@ class MovieDetail {
             </div>
         `;
         
-        // Add event listener for back button
-        setTimeout(() => {
-            const backBtn = container.querySelector('#backBtn');
-            if (backBtn) {
-                backBtn.addEventListener('click', () => {
-                    if (window.app) {
-                        window.app.showHome();
-                    }
-                });
-            }
-        }, 0);
+        // Add event listener for back button after innerHTML is set
+        const backBtn = container.querySelector('#backBtn');
+        if (backBtn) {
+            backBtn.addEventListener('click', () => {
+                if (window.app) {
+                    window.app.showHome();
+                }
+            });
+        }
         
         return container;
     }

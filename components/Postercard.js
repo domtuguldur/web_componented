@@ -153,17 +153,15 @@ class PosterCard extends HTMLElement {
     </div>
 `;
         
-        // Add click event listener to navigate to movie detail
-        setTimeout(() => {
-            const posterCard = this.querySelector('.poster-card');
-            if (posterCard) {
-                posterCard.addEventListener('click', () => {
-                    if (window.app) {
-                        window.app.showMovieDetail(this.movieData);
-                    }
-                });
-            }
-        }, 0);
+        // Add click event listener to navigate to movie detail after innerHTML is set
+        const posterCard = this.querySelector('.poster-card');
+        if (posterCard) {
+            posterCard.addEventListener('click', () => {
+                if (window.app) {
+                    window.app.showMovieDetail(this.movieData);
+                }
+            });
+        }
     }
 }
 
