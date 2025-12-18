@@ -11,6 +11,9 @@ class PosterCard extends HTMLElement {
         const price = this.getAttribute('price') || 'N/A';
         const image = this.getAttribute('image') || 'https://cdn.marvel.com/content/1x/snh_online_6072x9000_posed_01.jpg';
         
+        // Store movie data for click handler
+        this.movieData = { title, description, rating, year, duration, score, genre, price, image };
+        
         this.innerHTML = `
     <style>
         :host {
@@ -149,6 +152,18 @@ class PosterCard extends HTMLElement {
         </div>
     </div>
 `;
+        
+        // Add click event listener to navigate to movie detail
+        setTimeout(() => {
+            const posterCard = this.querySelector('.poster-card');
+            if (posterCard) {
+                posterCard.addEventListener('click', () => {
+                    if (window.app) {
+                        window.app.showMovieDetail(this.movieData);
+                    }
+                });
+            }
+        }, 0);
     }
 }
 
