@@ -51,7 +51,7 @@ class LoginModal {
 
                     <div class="join">
                         <p class="jointxt">wanna join DOM?</p>
-                        <button type="button" class="joiinbtn">Join</button>
+                        <button type="button" id="registerbtn" class="joinbtn">Join</button>
                     </div>
                 </form>
             </div>
@@ -80,6 +80,11 @@ class LoginModal {
                 e.preventDefault();
                 alert('Forgot password');
             });
+
+            const registerbtn = this.modal.querySelector('#registerbtn');
+            registerbtn.addEventListener('click', () => {
+                alert('Register functionality would be implemented here');
+            });
             
             // Prevent modal from closing when clicking inside
             this.modal.addEventListener('click', (e) => {
@@ -100,6 +105,42 @@ class LoginModal {
                 }
             });
         }, 0);
+    }
+
+    async handleLogin(event) {
+        event.preventDefault();
+
+        const email = this.modal.querySelector('email').value;
+        const password = this.modal.querySelector('password').value;
+
+        try {
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Logging in...';
+            submitBtn.disabled = true;
+
+            const result = await window.apiService.login(email, password);
+
+            if(result.success) {
+                alert('Login successful!');
+                this.close();
+                
+                if(window.app) {
+                    window.app.updatedUserState();
+                }
+
+                if (result.user.role === 'admin') {
+                    if (confirm('Go to admin dashboard?')) {
+                        window.adminPanel.open();
+                    }
+                }
+            }
+
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        } catch (error) {
+            alert(`Login failed: ${error.message}`);
+        }
     }
 
     open() {

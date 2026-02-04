@@ -49,8 +49,8 @@ router.get("/", async (req, res) => {
             .limit(parseInt(limit));
         res.json(movies);
     } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: "Server Error" });
+        console.error("GET /api/movies failed:", err);
+        res.status(500).json({ message: "Server Error", error: err.message });  
     }}
 );
 
