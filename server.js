@@ -8,6 +8,7 @@ const moviesRouter = require('./routes/Movie');
 const app= express();
 const PORT = process.env.PORT || 3000;
 
+//middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));

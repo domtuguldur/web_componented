@@ -22,7 +22,7 @@ class MoviePosters {
 
   async loadMovies() {
     try {
-      const res = await fetch("http://10.3.202.54:3000/api/movies"); 
+      const res = await fetch("http://192.168.1.94:3000/api/movies"); 
       if (!res.ok) throw new Error(`API error ${res.status}`);
       const data = await res.json();
 
