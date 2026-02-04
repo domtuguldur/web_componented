@@ -163,9 +163,9 @@ class PosterCard extends HTMLElement {
           <div class="genre">${genre}</div>
           <div class="price">${price}$</div>
         </div>
-      </div>
-    `;
-  }
+    </div>
+`;
+    }
 }
 
 if (!customElements.get("poster-card")) {
