@@ -3,22 +3,20 @@ class App {
     constructor() {
         this.root = document.getElementById('root');
         this.components = [];
-        this.currentView = 'home'; // Track current view: 'home' or 'detail'
-        this.movieDetail = new MovieDetail();
         this.init();
     }
 
     init() {
-        // Create all components
+        // Create all components for "home" view
         this.components = [
-            new Header(),
-            new HighlightSection(),
+            this.header,
+            this.highlightSection,
             new MoviePosters(),
             new LoginModal(),
-            new Footer()
+            this.footer
         ];
 
-        // Render all components
+        // Render initial view
         this.render();
     }
 
@@ -26,30 +24,10 @@ class App {
         // Clear root
         this.root.innerHTML = '';
         
-        if (this.currentView === 'home') {
-            // Append all components for home view
-            this.components.forEach(component => {
-                this.root.appendChild(component.render());
-            });
-        } else if (this.currentView === 'detail') {
-            // Show movie detail view
-            this.root.appendChild(this.movieDetail.render());
-        }
-    }
-
-    // Navigate to movie detail view
-    showMovieDetail(movieData) {
-        this.currentView = 'detail';
-        this.movieDetail.setMovie(movieData);
-        this.render();
-        window.scrollTo(0, 0);
-    }
-
-    // Navigate back to home view
-    showHome() {
-        this.currentView = 'home';
-        this.render();
-        window.scrollTo(0, 0);
+        // Append all components
+        this.components.forEach(component => {
+            this.root.appendChild(component.render());
+        });
     }
 }
 

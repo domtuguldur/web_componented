@@ -67,6 +67,14 @@ nav a:hover {
     align-items: center;
 }
 
+
+n {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
 .btn-primary {
     background: linear-gradient(135deg, #ff6b00, #ffa500);
     padding: 10px 25px;
